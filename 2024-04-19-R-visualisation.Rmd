@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introduction (Rstudio / R)
 
 You can find this and the data files from ELIXIREstonia github.
-[`https://github.com/ELIXIREstonia/2023-11-14-R-visualisation`](https://github.com/ELIXIREstonia/2023-11-14-R-visualisation).
+`https://github.com/ELIXIREstonia/2024-04-19-R-visualisation`.
 
 R is a popular open-source programming language and environment for statistical
 computing and graphics.
@@ -36,158 +36,9 @@ see:
 [`https://rstudio.github.io/cheatsheets/html/rstudio-ide.html`](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html){.uri}
 for more detailed overview.
 
-### R Syntax and Basic Functions
-
-```{r}
-# Arithmetic operations
-2 + 3
-4 * 5
-6 / 2 + 5 * 3
-```
-
-```{r}
-# Variables
-x <- 10
-y <- 20
-x + y
-```
-
-```{r}
-# Functions
-mean(c(1, 2, 3, 4, 5))
-max(c(1, 2, 3, 4, 5))
-
-# function with named arguments
-my_sum <- function(a=NULL, b) {
-  return(a + b)
-}
-my_sum(5, 7)
-```
-
-### Data Structures in R
-
-R has several data structures for organizing and storing data. Understanding
-these data structures is essential for effective data manipulation and analysis.
-
-1.  **Vectors**: A one-dimensional array of elements, all of the same data type.
-    Vectors are commonly used for performing arithmetic operations and storing
-    sequences of values.
-
-```{r}
-v <- c(1, 2, 3, 4, 5)
-print(v)
-```
-
-2.  **Matrices**: A two-dimensional array of elements, organized in rows and
-    columns, and all of the same data type. Matrices are useful for linear
-    algebra operations and storing tabular data with a fixed number of rows and
-    columns.
-
-```{r}
-m <- matrix(1:9, nrow = 3, ncol = 3)
-print(m)
-```
-
-3.  **Data frames**: A two-dimensional table where each column can have a
-    different data type. Data frames are the most common data structure for
-    storing and manipulating tabular data in R, especially for statistical
-    analysis.
-
-```{r}
-df <- data.frame(
-  name = c("Alice", "Bob", "Charlie"),
-  age = c(25, 30, 35),
-  city = c("New York", "San Francisco", "Los Angeles")
-)
-print(df)
-```
-
-4.  **Lists**: A versatile data structure that can store elements of different
-    data types and structures, including vectors, matrices, data frames and
-    other lists. Lists are useful for organizing and storing hierarchical or
-    nested data.
-
-```{r}
-l <- list(
-  name = "Alice",
-  age = c(25, 30),
-  city = c("New York", "San Francisco", "Los Angeles")
-)
-print(l)
-```
-
-Each data structure has its strengths and applications, and choosing the right
-one depends on the specific needs of your data manipulation and analysis tasks.
-
-### Data Types in R
-
-Understanding the fundamental data types in R is crucial for effective
-programming and data manipulation. Here's an overview of the primary data types
-you'll encounter in R:
-
-1.  **Numeric**: This is the default data type for numbers in R. Numeric types
-    in R are essentially decimal (floating-point) numbers. They are used for
-    most calculations involving numbers.
-
-```{r}
-num <- 42.5 
-print(num)
-```
-
-2.  **Integer**: Integers are numbers without decimal points. They can be
-    explicitly defined by adding L to the end of the number.
-
-```{r}
-int_num <- 42L 
-print(int_num) 
-```
-
-3.  **Character**: This type represents strings in R. Character strings are
-    enclosed in quotes, either single (') or double (").
-
-```{r}
-str <- "Hello, World!" 
-print(str)
-```
-
-4.  **Logical**: This type, also known as Boolean, represents TRUE or FALSE
-    values and is often the result of comparisons and logical operations.
-
-```{r}
-log_val <- TRUE 
-print(log_val)
-```
-
-5.  **Factor**: Factors are used to handle categorical data and store it as
-    levels. They can be ordered or unordered and are particularly useful in
-    statistical modeling.
-
-```{r}
-gender <- factor(c("Male", "Female", "Female", "Male")) 
-print(gender) 
-```
-
-6.  **Complex**: This data type is used for complex numbers with real and
-    imaginary parts.
-
-```{r}
-complex_num <- 3 + 4i 
-print(complex_num)
-```
-
-7.  **Raw**: The raw type is used to handle raw bytes. It's less commonly used
-    than the other data types but is important for certain types of binary data
-    operations.
-
-```{r}
-raw_data <- charToRaw("Hello") 
-print(raw_data) 
-```
-
-Each data type is suited for different kinds of tasks in R, and understanding
-these types is foundational for data analysis and programming in this
-environment. Choosing the correct data type is key to efficient programming and
-data processing in R.
+This is second part of a two part curriculum to get started with R and ggplot2.
+If you are unfamiliar with R basic syntax, datatypes and tidyverse, then first
+check out the first part:
 
 ## Loading the Tidyverse
 
@@ -215,167 +66,7 @@ The `tidyverse` packages, such as `readr` and `readxl`, provide functions for
 reading data from many of these formats. In this workshop, we'll focus on
 reading data from CSV, TSV.
 
-### Reading CSV Data
-
-```{r eval=FALSE}
-# Read data from a CSV file
-
-data_csv <- read_csv("data/Islander_data.csv")
-
-# Display the first few rows of the data
-data_csv
-```
-
-### Reading TSV Data
-
-Remove `#` from second and last row to run example
-
-```{r}
-# Read data from a TSV file
-# data_tsv <- read_tsv("data/Islander_data.tsv")
-
-# Display the first few rows of the data
-# head(data_tsv)
-```
-
-### Reading Excel Data
-
-```{r eval=FALSE}
-# Install readxl package if not already installed
-if (!requireNamespace("readxl", quietly = TRUE)) {
-  install.packages("readxl")
-}
-
-# Load the readxl package
-library(readxl)
-```
-
-Remove `#` from second and last row to run example
-
-```{r}
-# Read data from an Excel file
-# data_excel <- read_excel("data/Islander_data.xlsx", sheet = "Sheet1")
-
-# Display the first few rows of the data
-# head(data_excel)
-```
-
-For the Excel file, you'll need to remember to specify the correct sheet name
-using the `sheet` parameter in the `read_excel()` function.
-
-## High-Level Overview of the Data with Tidyverse Pipes
-
-Tidyverse pipes, represented by the `%>%` \<ctrl+shift+M\> symbol, allow you to
-chain together multiple functions in a clear and readable manner. Pipes take the
-output of one function and use it as the input for the next function, making it
-easy to follow the sequence of data transformations.
-
-In the following example, we'll use pipes to perform a series of operations on
-our dataset: 1. Group the data by a specific category (`group_by`) 2. Calculate
-summary statistics for each group (`summarize`) 3. Sort the resulting summary by
-a specific statistic (`arrange`)
-
-```{r include=FALSE}
-# Create a dummy dataset
-set.seed(42)
-data <- tibble(
-  YourCategory = factor(sample(LETTERS[1:5], 100, replace = TRUE)),
-  YourVariable = rnorm(100, mean = 50, sd = 10)
-)
-head(data)
-```
-
-```{r}
-# Summarize the data
-data_summary <- data %>% 
-  group_by(YourCategory) %>%
-  summarize(
-    mean_value = mean(YourVariable, na.rm = TRUE),
-    n = n()
-  ) %>%
-  arrange(desc(mean_value))
-
-head(data_summary)
-```
-
-In the above code, replace `YourCategory` and `YourVariable` with the
-appropriate column names from your dataset. This will give a high-level overview
-of the data, summarizing it by the specified category and calculating the mean
-of the specified variable. The use of pipes makes it easy to understand the
-sequence of transformations applied to the data.
-
-Find more options from
-[data-wrangling-cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
-
-### Task:
-
-**Task: Analyzing Effects of Drugs on Memory**
-
-Using the "Memory Test on Drugged Islanders Data" dataset, your task is to
-analyze the effects of the different drugs and their dosages on memory recall.
-
-1.  **Data Exploration**:
-
-    -   Display the first 10 rows of the dataset.
-
-    -   Calculate the overall average of memory scores before and after the drug
-        was administered.
-
-2.  **Drug Analysis**:
-
-    -   Using tidyverse pipes and the provided example as a reference, group the
-        data by the **`Drug`** column.
-
-    -   For each drug, calculate:
-
-        1.  The average **`diff`** in memory scores.
-
-        2.  The total number of participants that took that drug (**`n()`**).
-
-    -   Sort the results based on the average **`diff`** in descending order.
-
-3.  **Dosage Analysis**:
-
-    -   Group the data by both **`Drug`** and **`dosage`**.
-
-    -   For each drug and dosage combination, calculate the average **`diff`**
-        in memory scores.
-
-    -   Display the results, sorting first by **`Drug`** and then by the average
-        **`diff`** in descending order.
-
-4.  **Age Group Analysis**:
-
-    -   Create a new column in the dataset called **`age_group`**. Categorize
-        participants as "Young" if they are below 30, "Middle-aged" if they are
-        between 30 and 50, and "Senior" if they are above 50. (*hint:*
-        `case_when`)
-
-    -   Group the data by **`age_group`** and **`Drug`**.
-
-    -   Calculate the average **`diff`** in memory scores for each age group and
-        drug combination.
-
-    -   Display the results, and try to infer if age has any impact on the
-        drug's effectiveness.
-
-5.  **Happy/Sad Group Analysis**:
-
-    -   Group the data based on the **`happy/sad group`** column.
-
-    -   For each emotion group, calculate the average **`diff`** in memory
-        scores before and after drug administration.
-
-    -   Compare the results. Does the primed emotion seem to have an effect on
-        the memory scores?
-
-```{r}
-
-
-
-```
-
-# About the data
+## About the data
 
 In examples we'll be using a
 [Kaggle](https://www.kaggle.com/datasets/steveahn/memory-test-on-drugged-islanders-data?resource=download)
@@ -401,6 +92,92 @@ The easiest way to read in the data is to use `read_csv` command:
 Isd <- read_csv('data/Islander_data.csv')
 
 Isd
+```
+
+# High-Level Overview of the Data with Tidyverse Pipes
+
+Tidyverse pipes, represented by the `%>%` \<ctrl+shift+M\> symbol, allow you to
+chain together multiple functions in a clear and readable manner. Pipes take the
+output of one function and use it as the input for the next function, making it
+easy to follow the sequence of data transformations.
+
+In the following example, we'll use pipes to perform a series of operations on
+our dataset: 1. Group the data by a specific category (`group_by`) 2. Calculate
+summary statistics for each group (`summarize`) 3. Sort the resulting summary by
+a specific statistic (`arrange`)
+
+```{r include=FALSE}
+# Create a dummy dataset
+set.seed(42)
+data <- tibble(
+  YourCategory = factor(sample(LETTERS[1:5], 100, replace = TRUE)),
+  YourVariable = rnorm(100, mean = 50, sd = 10),
+  YourOtherVariable = rnorm(100, mean = 20, sd = 2)
+)
+head(data)
+```
+
+```{r}
+# Summarize the data
+data_summary <- data %>% 
+  group_by(YourCategory) %>%
+  summarize(
+    mean_value = mean(YourVariable, na.rm = TRUE),
+    n = n()
+  ) %>%
+  arrange(desc(mean_value))
+
+head(data_summary)
+```
+
+In the above code, replace `YourCategory` and `YourVariable` with the
+appropriate column names from your dataset. This will give a high-level overview
+of the data, summarizing it by the specified category and calculating the mean
+of the specified variable. The use of pipes makes it easy to understand the
+sequence of transformations applied to the data.
+
+```{r}
+# New column using mutate and case_when statement
+# note that we are overwriting (updating) the original data
+data <- data %>%
+  mutate(
+    HalfOfOtherVariabel = YourOtherVariable / 2, # we can add another column based on existing columns
+    YourGroup = case_when(
+      YourCategory %in% c("A", "B") ~ "Group 1", # combine A and B into Group 1
+      YourCategory %in% c("C", "D") ~ "Group 2", # combine C and D into Group 2
+      TRUE ~ "Other"                             # case_when needs fallback default value, 
+                                                 # if none of the above match
+    ),
+    NewVariable = case_when(
+      YourVariable > 60 ~ YourVariable * 2,  # Double values above 60
+      YourVariable < 40 ~ YourVariable / 2,  # Halve values below 40
+      TRUE ~ YourVariable                    # Keep as is otherwise
+    )
+  )
+head(data)
+```
+
+Find more options from
+[data-wrangling-cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+
+### Task:
+
+**Task: Analyzing Effects of Drugs on Memory**
+
+Using the "Memory Test on Drugged Islanders Data" dataset, your task is to
+analyze the effects of the different drugs and their dosages on memory recall.
+
+1.  **Age Group Column**:
+
+    -   Create a new column in the dataset called **`age_group`**. Categorize
+        participants as "Young" if they are below 30, "Middle-aged" if they are
+        between 30 and 50, and "Senior" if they are above 50. (*hint:*
+        `case_when`)
+
+```{r}
+
+
+
 ```
 
 # Plotting with ggplot2
