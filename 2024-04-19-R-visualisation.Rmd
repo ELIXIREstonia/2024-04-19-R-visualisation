@@ -14,8 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction (Rstudio / R)
 
-You can find this and the data files from ELIXIREstonia github.
-`https://github.com/ELIXIREstonia/2024-04-19-R-visualisation`.
+You can find this and the data files from ELIXIREstonia github:
+[`https://github.com/ELIXIREstonia/2024-04-19-R-visualisation`](https://github.com/ELIXIREstonia/2024-04-19-R-visualisation)
 
 R is a popular open-source programming language and environment for statistical
 computing and graphics.
@@ -36,9 +36,10 @@ see:
 [`https://rstudio.github.io/cheatsheets/html/rstudio-ide.html`](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html){.uri}
 for more detailed overview.
 
-This is second part of a two part curriculum to get started with R and ggplot2.
-If you are unfamiliar with R basic syntax, datatypes and tidyverse, then first
-check out the first part:
+This is the second part of a two-part curriculum designed to introduce R and
+ggplot2. If you are unfamiliar with the basic syntax, data types, and the
+tidyverse in R, then you should first check out Part One at:
+<https://github.com/ELIXIREstonia/2024-03-22-R-basic>.
 
 ## Loading the Tidyverse
 
@@ -247,7 +248,6 @@ Let's create a scatter plot with the `age` variable mapped to the x-axis, the
 color aesthetics:
 
 ```{r}
-Isd <- read_csv('data/Islander_data.csv')
 # Create a scatter plot with aesthetics mapped to variables
 scatter_plot <- ggplot(Isd, aes(x = age, y = Diff, color = factor(Drug))) +
   geom_point()
